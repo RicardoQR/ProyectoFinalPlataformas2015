@@ -24,7 +24,13 @@
 
 using namespace std;
 
-
+void selPalabra(string s1, string s2){
+			if(s1 == "s_Temperatura"){s2 = "temperatura";}
+			else if(s1 == "s_Presion"){s2 = "presion";}
+			else if(s1 == "s_Humedad"){s2 = "humedad";}
+			else if(s1 == "s_Luminosidad"){s2 = "luminosidad";}
+			else if(s1 == "s_Viento"){s2 = "velocidad de viento";};	
+}
 
 class Sensor
 {
@@ -58,11 +64,7 @@ class Sensor
 			std::auto_ptr<sql::ResultSet> res(stmt->executeQuery("SELECT * from "+table+" where Localizacion = "+Lugar+" order by Fecha"));
 			
 			string palabra;
-			if(table == "s_Temperatura"){palabra = "temperatura";}
-			else if(table == "s_Presion"){palabra = "presion";}
-			else if(table == "s_Humedad"){palabra = "humedad";}
-			else if(table == "s_Luminosidad"){palabra = "luminosidad";}
-			else if(table == "s_Viento"){palabra = "velocidad de viento";};
+			selPalabra(table,palabra);
 			
 			cout << " Los valores de " << palabra << " obtenidos en el " << Lugar << " son los siguientes:" << endl;	
 			while (res->next()){
@@ -81,11 +83,7 @@ class Sensor
 			std::auto_ptr<sql::ResultSet> res(stmt->executeQuery("SELECT * from "+table+" where Fecha = "+Fecha+""));
 			
 			string palabra;
-			if(table == "s_Temperatura"){palabra = "temperatura";}
-			else if(table == "s_Presion"){palabra = "presion";}
-			else if(table == "s_Humedad"){palabra = "humedad";}
-			else if(table == "s_Luminosidad"){palabra = "luminosidad";}
-			else if(table == "s_Viento"){palabra = "velocidad de viento";};
+			selPalabra(table,palabra);
 			
 			cout << " El dia " << Fecha << " se obtuvieron los siguientes valores de " << palabra << endl;	
 			while (res->next()){
@@ -105,11 +103,7 @@ class Sensor
 			std::auto_ptr<sql::ResultSet> res(stmt->executeQuery("SELECT * from "+table+" where Fecha >= "+inFecha1+" AND Fecha <= "+inFecha2+" order by Fecha"));
 			
 			string palabra;
-			if(table == "s_Temperatura"){palabra = "temperatura";}
-			else if(table == "s_Presion"){palabra = "presion";}
-			else if(table == "s_Humedad"){palabra = "humedad";}
-			else if(table == "s_Luminosidad"){palabra = "luminosidad";}
-			else if(table == "s_Viento"){palabra = "velocidad de viento";};
+			selPalabra(table,palabra);
 			
 			cout << "Se obtuvieron los siguientes valores de " << palabra << " en el intervalo de tiempo comprendido entre" << inFecha1<< "y" << inFecha2 << ":" << endl;	
 			while (res->next()){
@@ -130,11 +124,7 @@ class Sensor
 			
 			string prueba;
 			string palabra;
-			if(table == "s_Temperatura"){palabra = "temperatura";}
-			else if(table == "s_Presion"){palabra = "presion";}
-			else if(table == "s_Humedad"){palabra = "humedad";}
-			else if(table == "s_Luminosidad"){palabra = "luminosidad";}
-			else if(table == "s_Viento"){palabra = "velocidad de viento";};
+			selPalabra(table,palabra);
 			
 			cout << "Se obtuvieron los siguientes resultados de " << palabra << " en el intervalo de valores deseado, entre " << Valor1<< " y " << Valor2 << ":" << endl;	
 			while (res->next()){
